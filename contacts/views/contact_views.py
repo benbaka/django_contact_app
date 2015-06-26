@@ -7,4 +7,5 @@ def index(request):
     context = {'contacts':all_contacts}
     return render(request, 'contacts/index.html', context)
 
-
+def new(request):
+    return HttpResponse(status=200)
