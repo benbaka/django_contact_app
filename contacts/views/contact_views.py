@@ -1,7 +1,7 @@
 from contacts.forms.contact_form import ContactForm
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from contacts.models import Contact
 
 def index(request):
@@ -17,7 +17,13 @@ def new(request):
         form = ContactForm(request.POST)
 
         if form.is_valid():
-            return HttpResponseRedirect('contacts/')
+            try:
+                age = form.cleaned_data['age']
+                name = form.cleaned_data['name']
+                contact = Contact(age=age, name=name)
+                contact.save()
+                return redirect('/contacts/')
+            except:
+                return render(request, 'contacts/new_contact_form.html', {'form':form})
         else:
-            import pdb; pdb.set_trace()
             return render(request, 'contacts/new_contact_form.html', {'form':form})
