@@ -1,6 +1,5 @@
 from contacts.forms.contact_form import ContactForm
-from django.http import HttpResponse
-from django.http.response import HttpResponseRedirect
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from contacts.models import Contact
 
@@ -22,8 +21,11 @@ def new(request):
                 name = form.cleaned_data['name']
                 contact = Contact(age=age, name=name)
                 contact.save()
+                messages.add_message(request, messages.SUCCESS, "Contact successfully created" )
                 return redirect('/contacts/')
             except:
+                messages.add_message(request, messages.ERROR, "Contact creation unsuccessful" )
                 return render(request, 'contacts/new_contact_form.html', {'form':form})
         else:
+            messages.add_message(request, messages.ERROR, "Contact creation unsuccessful" )
             return render(request, 'contacts/new_contact_form.html', {'form':form})
