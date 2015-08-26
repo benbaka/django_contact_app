@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^contacts/$', contact_views.index),
     url(r'^contacts/new$', contact_views.new),
+    url(r'^contacts/(?P<id>\d+)/edit$', contact_views.edit),
 
 ]
