@@ -39,12 +39,15 @@ def edit(request, id):
         return render(request, 'contacts/edit_contact_form.html', {'form':edit_contact_form, 'contact':contact})
     else:
         contact = Contact.objects.get(id=id)
-        form = ContactForm(request.POST)
+        edit_contact_form = ContactForm(request.POST)
 
-        if form.is_valid():
-            contact.name = form.cleaned_data['name']
-            contact.age = form.cleaned_data['age']
+        if edit_contact_form.is_valid():
+            contact.name = edit_contact_form.cleaned_data['name']
+            contact.age = edit_contact_form.cleaned_data['age']
             contact.save()
 
             messages.add_message(request, messages.SUCCESS, "Contact successfully edited" )
             return redirect('/contacts/')
+        else:
+            messages.add_message(request, messages.ERROR, "Contact editing unsuccessful" )
+            return render(request, 'contacts/edit_contact_form.html', {'form':edit_contact_form, 'contact':contact})
