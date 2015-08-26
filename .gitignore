@@ -2,3 +2,4 @@ ve/
 *.pyc
 **/*.pyc
 .idea
+db.sqlite3
