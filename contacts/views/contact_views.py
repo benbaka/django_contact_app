@@ -32,7 +32,19 @@ def new(request):
 
 def edit(request, id):
 
-    contact = Contact.objects.get(id=id)
+    if request.method == "GET":
 
-    edit_contact_form = ContactForm({'name':contact.name, 'age': contact.age })
-    return render(request, 'contacts/new_contact_form.html', {'form':edit_contact_form, 'contact':contact})
+        contact = Contact.objects.get(id=id)
+        edit_contact_form = ContactForm({'name':contact.name, 'age': contact.age })
+        return render(request, 'contacts/edit_contact_form.html', {'form':edit_contact_form, 'contact':contact})
+    else:
+        contact = Contact.objects.get(id=id)
+        form = ContactForm(request.POST)
+
+        if form.is_valid():
+            contact.name = form.cleaned_data['name']
+            contact.age = form.cleaned_data['age']
+            contact.save()
+
+            messages.add_message(request, messages.SUCCESS, "Contact successfully edited" )
+            return redirect('/contacts/')
