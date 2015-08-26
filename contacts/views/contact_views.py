@@ -29,3 +29,10 @@ def new(request):
         else:
             messages.add_message(request, messages.ERROR, "Contact creation unsuccessful" )
             return render(request, 'contacts/new_contact_form.html', {'form':form})
+
+def edit(request, id):
+
+    contact = Contact.objects.get(id=id)
+
+    edit_contact_form = ContactForm({'name':contact.name, 'age': contact.age })
+    return render(request, 'contacts/new_contact_form.html', {'form':edit_contact_form, 'contact':contact})
