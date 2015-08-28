@@ -55,3 +55,9 @@ def edit(request, id):
 def show(request, id):
     contact = Contact.objects.get(id=id)
     return render(request, 'contacts/show.html', {'contact': contact})
+
+def delete(request, id):
+    contact = Contact.objects.get(id=id)
+    contact.delete()
+
+    return redirect('/contacts/')
