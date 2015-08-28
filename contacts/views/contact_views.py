@@ -51,3 +51,7 @@ def edit(request, id):
         else:
             messages.add_message(request, messages.ERROR, "Contact editing unsuccessful" )
             return render(request, 'contacts/edit_contact_form.html', {'form':edit_contact_form, 'contact':contact})
+
+def show(request, id):
+    contact = Contact.objects.get(id=id)
+    return render(request, 'contacts/show.html', {'contact': contact})
