@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^contacts/new$', contact_views.new),
     url(r'^contacts/(?P<id>\d+)/edit$', contact_views.edit),
     url(r'^contacts/(?P<id>\d+)/update$', contact_views.edit),
+    url(r'^contacts/(?P<id>\d+)/show$', contact_views.show),
 
 ]
