@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Show contact</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td><b>Name:</b></td>
+        <td>{{contact.name}}</td>
+    </tr>
+    <tr>
+        <td><b>Age:</b></td>
+        <td>{{contact.age}}</td>
+    </tr>
+</table>
+
+<a href="/contacts/">Back</a> | <a href="/contacts/{{ contact.id }}/edit">Edit</a>
+</body>
+</html>
