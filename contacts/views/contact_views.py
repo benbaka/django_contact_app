@@ -61,3 +61,21 @@ def delete(request, id):
     contact.delete()
 
     return redirect('/contacts/')
+
+
+def my_decorator(original_func):
+
+
+    def bad_func(request):
+        if request.method == "GET":
+            original_func(request)
+            import pdb; pdb.set_trace()
+        else:
+            print "Send a redirect"
+
+    return bad_func
+
+@my_decorator
+def me(request):
+    return redirect('/contacts/')
+
