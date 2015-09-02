@@ -1,13 +1,16 @@
 from contacts.forms.contact_form import ContactForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from contacts.models import Contact
 
+@login_required(login_url="/admin/login")
 def index(request):
     all_contacts = Contact.objects.all()
     context = {'contacts':all_contacts}
     return render(request, 'contacts/index.html', context)
 
+@login_required(login_url="/admin/login")
 def new(request):
     if request.method == "GET":
         form = ContactForm()
@@ -30,6 +33,7 @@ def new(request):
             messages.add_message(request, messages.ERROR, "Contact creation unsuccessful" )
             return render(request, 'contacts/new_contact_form.html', {'form':form})
 
+@login_required(login_url="/admin/login")
 def edit(request, id):
 
     if request.method == "GET":
@@ -52,10 +56,12 @@ def edit(request, id):
             messages.add_message(request, messages.ERROR, "Contact editing unsuccessful" )
             return render(request, 'contacts/edit_contact_form.html', {'form':edit_contact_form, 'contact':contact})
 
+@login_required(login_url="/admin/login")
 def show(request, id):
     contact = Contact.objects.get(id=id)
     return render(request, 'contacts/show.html', {'contact': contact})
 
+@login_required(login_url="/admin/login")
 def delete(request, id):
     contact = Contact.objects.get(id=id)
     contact.delete()
