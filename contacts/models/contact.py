@@ -1,3 +1,4 @@
+from contacts.models.user_profile import UserProfile
 from django.db import models
 
 GENDER = (
@@ -11,6 +12,8 @@ class Contact(models.Model):
     school = models.CharField(max_length=255, null=True)
     phone_number = models.CharField(max_length= 255, null=True)
     email_address = models.EmailField(null=True)
+    owner = models.ForeignKey(UserProfile, null=True)
+
 
     class Meta:
         app_label = "contacts"
