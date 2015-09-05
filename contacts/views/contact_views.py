@@ -78,6 +78,14 @@ def delete(request, id):
 
     return redirect('/contacts/')
 
+@login_required(login_url="/admin/login")
+def get_user_based_contacts(request):
+    user_profile = get_user_profile(request)
+    contacts = Contact.objects.filter(owner=user_profile)
+    context = {'contacts':contacts}
+    return render(request, 'contacts/user_based_contacts.html', context)
+
+
 
 def my_decorator(original_func):
 
