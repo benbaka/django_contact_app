@@ -13,6 +13,7 @@ class Contact(models.Model):
     phone_number = models.CharField(max_length= 255, null=True)
     email_address = models.EmailField(null=True)
     owner = models.ForeignKey(UserProfile, null=True)
+    public = models.BooleanField(default=False)
 
 
     class Meta:
