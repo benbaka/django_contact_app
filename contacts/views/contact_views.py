@@ -6,7 +6,7 @@ from contacts.models import Contact
 
 @login_required(login_url="/admin/login")
 def index(request):
-    all_contacts = Contact.objects.all()
+    all_contacts = Contact.objects.filter(public=True)
     context = {'contacts':all_contacts}
     return render(request, 'contacts/index.html', context)
 
@@ -22,7 +22,8 @@ def new(request):
             try:
                 age = form.cleaned_data['age']
                 name = form.cleaned_data['name']
-                contact = Contact(age=age, name=name)
+                public = form.cleaned_data['public']
+                contact = Contact(age=age, name=name, public=public)
                 contact.save()
                 messages.add_message(request, messages.SUCCESS, "Contact successfully created" )
                 return redirect('/contacts/')
@@ -48,6 +49,7 @@ def edit(request, id):
         if edit_contact_form.is_valid():
             contact.name = edit_contact_form.cleaned_data['name']
             contact.age = edit_contact_form.cleaned_data['age']
+            contact.public = edit_contact_form.cleaned_data['public']
             contact.save()
 
             messages.add_message(request, messages.SUCCESS, "Contact successfully edited" )
