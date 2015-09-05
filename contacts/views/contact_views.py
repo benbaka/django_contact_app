@@ -1,8 +1,14 @@
 from contacts.forms.contact_form import ContactForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from contacts.models import Contact
+
+def get_user_profile(request):
+    user = User.objects.get(id = request.user.id)
+    profile = user.userprofile_set.get_or_create(user=user)
+    return profile[0]
 
 @login_required(login_url="/admin/login")
 def index(request):
@@ -20,10 +26,11 @@ def new(request):
 
         if form.is_valid():
             try:
+                user_profile = get_user_profile(request)
                 age = form.cleaned_data['age']
                 name = form.cleaned_data['name']
                 public = form.cleaned_data['public']
-                contact = Contact(age=age, name=name, public=public)
+                contact = Contact(age=age, name=name, public=public, owner=user_profile)
                 contact.save()
                 messages.add_message(request, messages.SUCCESS, "Contact successfully created" )
                 return redirect('/contacts/')
@@ -50,6 +57,7 @@ def edit(request, id):
             contact.name = edit_contact_form.cleaned_data['name']
             contact.age = edit_contact_form.cleaned_data['age']
             contact.public = edit_contact_form.cleaned_data['public']
+            contact.owner = get_user_profile(request)
             contact.save()
 
             messages.add_message(request, messages.SUCCESS, "Contact successfully edited" )
