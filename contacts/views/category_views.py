@@ -1,6 +1,6 @@
 from contacts.models.category import Category
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 
 
@@ -17,3 +17,8 @@ class CategoryDetailView(DetailView):
 class CategoryListView(ListView):
     template_name = "categories/category_list.html"
     model = Category
+
+class CategoryUpdateView(UpdateView):
+    template_name = "categories/category_update.html"
+    model = Category
+    fields = ['name', 'description']
