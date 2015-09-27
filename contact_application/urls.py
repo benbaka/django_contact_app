@@ -27,8 +27,10 @@ urlpatterns = [
     url(r'^contacts/(?P<id>\d+)/show$', contact_views.show),
     url(r'^contacts/(?P<id>\d+)/delete$', contact_views.delete),
     url(r'^contacts/my_contacts$',contact_views.get_user_based_contacts),
+    url(r'^categories$', category_views.CategoryListView.as_view(), name="category-list"),
     url(r'^categories/new$', category_views.CategoryCreateView.as_view()),
     url(r'^categories/(?P<pk>\d+)/show$', category_views.CategoryDetailView.as_view(), name="category-detail"),
+    url(r'^categories/(?P<pk>\d+)/update$', category_views.CategoryUpdateView.as_view(), name="category-update"),
     url(r'^me$', contact_views.me),
 
 ]
