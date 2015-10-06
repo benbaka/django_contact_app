@@ -1,4 +1,5 @@
 from contacts.forms.contact_form import ContactForm
+from contacts.models.category import Category
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -31,7 +32,9 @@ def new(request):
                 age = form.cleaned_data['age']
                 name = form.cleaned_data['name']
                 public = form.cleaned_data['public']
-                contact = Contact(age=age, name=name, public=public, owner=user_profile)
+                category_id = form.cleaned_data['category']
+                category = Category.objects.filter(id=category_id)[0]
+                contact = Contact(age=age, name=name, public=public, owner=user_profile, category=category)
                 contact.save()
                 messages.add_message(request, messages.SUCCESS, "Contact successfully created" )
                 return redirect('/contacts/')
