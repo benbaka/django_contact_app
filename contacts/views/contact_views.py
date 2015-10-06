@@ -19,10 +19,11 @@ def index(request):
 @login_required(login_url="/admin/login")
 def new(request):
     if request.method == "GET":
-        form = ContactForm()
+        current_user = request.user
+        form = ContactForm(current_user=current_user)
         return render(request, 'contacts/new_contact_form.html', {'form':form})
     else:
-        form = ContactForm(request.POST)
+        form = ContactForm(data=request.POST, current_user=request.user)
 
         if form.is_valid():
             try:
