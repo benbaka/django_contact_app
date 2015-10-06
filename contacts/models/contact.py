@@ -1,3 +1,4 @@
+from contacts.models.category import Category
 from contacts.models.user_profile import UserProfile
 from django.db import models
 
@@ -14,6 +15,7 @@ class Contact(models.Model):
     email_address = models.EmailField(null=True)
     owner = models.ForeignKey(UserProfile, null=True)
     public = models.BooleanField(default=False)
+    category = models.ForeignKey(Category, null=True)
 
 
     class Meta:
