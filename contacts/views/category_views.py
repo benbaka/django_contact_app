@@ -1,3 +1,4 @@
+from contacts.forms.categoryForm import CategoryForm
 from contacts.models.category import Category
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
@@ -7,7 +8,13 @@ from django.views.generic.list import ListView
 class CategoryCreateView(CreateView):
     template_name = "categories/category_form.html"
     model = Category
-    fields = ['name', 'description']
+    form_class = CategoryForm
+
+    def form_valid(self, form):
+        category = form.save(commit=False)
+        category.owner_id = self.request.user.id
+        category.save()
+        return super(CategoryCreateView, self).form_valid(form)
 
 
 class CategoryDetailView(DetailView):
