@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
+{%  extends "contacts/main.html" %}
+{% load staticfiles %}
     <title>Contact Create</title>
-</head>
-<body>
-<h2>Create Contact</h2>
 
+
+{% block header_files %}
+<link href="{% static 'custom/css/common.css' %}"
+          rel="stylesheet" media="screen">
+{% endblock %}
+
+{% block content %}
 {% if messages %}
-    <ul class="messages">
+<h2>Create Contact</h2>
+<ul class="messages">
     {% for message in messages %}
         <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
             {{ message }}
@@ -16,13 +19,17 @@
     {% endfor %}
 </ul>
 {% endif %}
-
-
-<form action="/contacts/new" method="post">
+<h1>Create Contact</h1>
+  <form class="form-horizontal" role="form" action="/contacts/new" method="post">
     {% csrf_token %}
+
+
     {{ form.as_p }}
     <input type="submit" value="Submit" />
 </form>
 
-</body>
-</html>
+
+<br/>
+
+
+{% endblock %}
