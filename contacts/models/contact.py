@@ -16,6 +16,7 @@ class Contact(models.Model):
     owner = models.ForeignKey(UserProfile, null=True)
     public = models.BooleanField(default=False)
     category = models.ForeignKey(Category, null=True)
+    location = models.CharField(max_length=255, null=True)
 
 
     class Meta:
