@@ -53,7 +53,8 @@ def edit(request, id):
     if request.method == "GET":
 
         contact = Contact.objects.get(id=id)
-        edit_contact_form = ContactForm({'name':contact.name, 'age': contact.age })
+        current_user = request.user
+        edit_contact_form = ContactForm(current_user, {'name':contact.name, 'age': contact.age})
         return render(request, 'contacts/edit_contact_form.html', {'form':edit_contact_form, 'contact':contact})
     else:
         contact = Contact.objects.get(id=id)
