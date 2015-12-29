@@ -64,6 +64,7 @@ def edit(request, id):
             contact.name = edit_contact_form.cleaned_data['name']
             contact.age = edit_contact_form.cleaned_data['age']
             contact.public = edit_contact_form.cleaned_data['public']
+            contact.category = edit_contact_form.cleaned_data['category']
             contact.owner = get_user_profile(request)
             contact.save()
 
