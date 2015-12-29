@@ -40,28 +40,30 @@
                         <img src="https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?fit=crop&fm=jpg&q=75&w=1250" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
-                        <h4>Bhaumik Patel</h4>
-                        <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
+                        <h4>{{contact.name}}</h4>
+                        <small><cite>{{ contact.location}}<i class="glyphicon glyphicon-map-marker">
                         </i></cite></small>
                         <p>
-                            <i class="glyphicon glyphicon-envelope"></i>email@example.com
+                            <i class="glyphicon glyphicon-envelope"></i>{{contact.email_address}}
                             <br />
-                            <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
+                            <i class="glyphicon glyphicon-phone"></i><a href="">{{contact.phone_number}}</a>
                             <br />
-                            <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
+                            <i class="glyphicon glyphicon-apple"></i><a href="">{{contact.category.name}}</a>
+                            <br />
+                            <i class="glyphicon glyphicon-gift"></i>{{contact.gender}}</p>
                         <!-- Split button -->
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary">
-                                Social</button>
+                                Actions</button>
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                 <span class="caret"></span><span class="sr-only">Social</span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Twitter</a></li>
-                                <li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
-                                <li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
+                                <li><a href="/contacts/{{ contact.id }}/show">Show</a></li>
+                                <li><a href="/contacts/{{ contact.id }}/edit">Edit</a></li>
+                                <li><a href="https://www.facebook.com/jquery2dotnet">Download</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">Github</a></li>
+                                <li><a href="/contacts/{{ contact.id }}/delete">Delete</a></li>
                             </ul>
                         </div>
                     </div>
