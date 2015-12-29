@@ -58,7 +58,7 @@ def edit(request, id):
         return render(request, 'contacts/edit_contact_form.html', {'form':edit_contact_form, 'contact':contact})
     else:
         contact = Contact.objects.get(id=id)
-        edit_contact_form = ContactForm(request.POST)
+        edit_contact_form = ContactForm(request.user, request.POST)
 
         if edit_contact_form.is_valid():
             contact.name = edit_contact_form.cleaned_data['name']
