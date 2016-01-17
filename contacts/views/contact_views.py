@@ -63,6 +63,7 @@ def edit(request, id):
                                                        'category': contact.category.id})
         return render(request, 'contacts/edit_contact_form.html', {'form':edit_contact_form,
                                                                    'contact':contact,
+                                                                   'title': 'Edit Contact',
                                                                    'categories':categories})
     else:
         contact = Contact.objects.get(id=id)

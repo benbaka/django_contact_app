@@ -1,7 +1,7 @@
 {% extends "contacts/main.html" %}
 {% load staticfiles %}
 {% load form %}
-<title>Contact Create</title>
+{% block title %}{{ title }}{% endblock %}
 
 {% block header_files %}
     <link href="{% static 'custom/css/common.css' %}"
@@ -22,5 +22,5 @@
     {% endif %}
 
 
-     {% contact_form form contact categories "Editing Contact" %}
+     {% contact_form form contact categories title %}
 {% endblock %}
