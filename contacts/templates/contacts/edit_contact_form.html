@@ -9,5 +9,18 @@
 {% endblock %}
 
 {% block content %}
+        {% if messages %}
+        <div class="alert alert-danger" role="alert">
+        <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {{ message }}
+            </li>
+        {% endfor %}
+        </ul>
+        </div>
+    {% endif %}
+
+
      {% contact_form form contact categories %}
 {% endblock %}
