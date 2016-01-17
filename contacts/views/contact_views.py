@@ -59,6 +59,7 @@ def edit(request, id):
 
         edit_contact_form = ContactForm(current_user, {'name':contact.name,
                                                        'age': contact.age,
+                                                       'public': contact.public,
                                                        'category': contact.category.id})
         return render(request, 'contacts/edit_contact_form.html', {'form':edit_contact_form,
                                                                    'contact':contact,
@@ -66,20 +67,26 @@ def edit(request, id):
     else:
         contact = Contact.objects.get(id=id)
         edit_contact_form = ContactForm(request.user, request.POST)
-
         if edit_contact_form.is_valid():
             contact.name = edit_contact_form.cleaned_data['name']
             contact.age = edit_contact_form.cleaned_data['age']
             contact.public = edit_contact_form.cleaned_data['public']
-            contact.category = edit_contact_form.cleaned_data['category']
+            category_id = edit_contact_form.cleaned_data['category']
+            category = Category.objects.filter(id=category_id)[0]
+            contact.category = category
             contact.owner = get_user_profile(request)
             contact.save()
 
             messages.add_message(request, messages.SUCCESS, "Contact successfully edited" )
             return redirect('/contacts/')
         else:
+            current_user = request.user
+            user_profile = current_user.userprofile_set.filter()[0]
+            categories = Category.objects.filter(owner=user_profile)
             messages.add_message(request, messages.ERROR, "Contact editing unsuccessful" )
-            return render(request, 'contacts/edit_contact_form.html', {'form':edit_contact_form, 'contact':contact})
+            return render(request, 'contacts/edit_contact_form.html', {'form':edit_contact_form,
+                                                                       'contact':contact,
+                                                                       'categories':categories})
 
 @login_required(login_url="/admin/login")
 def show(request, id):
