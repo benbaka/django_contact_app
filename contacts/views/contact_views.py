@@ -54,8 +54,15 @@ def edit(request, id):
 
         contact = Contact.objects.get(id=id)
         current_user = request.user
-        edit_contact_form = ContactForm(current_user, {'name':contact.name, 'age': contact.age})
-        return render(request, 'contacts/edit_contact_form.html', {'form':edit_contact_form, 'contact':contact})
+        user_profile = current_user.userprofile_set.filter()[0]
+        categories = Category.objects.filter(owner=user_profile)
+
+        edit_contact_form = ContactForm(current_user, {'name':contact.name,
+                                                       'age': contact.age,
+                                                       'category': contact.category.id})
+        return render(request, 'contacts/edit_contact_form.html', {'form':edit_contact_form,
+                                                                   'contact':contact,
+                                                                   'categories':categories})
     else:
         contact = Contact.objects.get(id=id)
         edit_contact_form = ContactForm(request.user, request.POST)
