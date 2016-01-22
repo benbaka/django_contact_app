@@ -7,7 +7,7 @@
                     <div class="form-group" form-group-lg>
                 {% endif %}
                     <label for="id_name" class="col-sm-2  col-md-2 col-lg-2 control-label">Name</label>
-                    <div class="col-sm-10  col-md-10 col-lg-10">
+                    <div class="col-sm-6  col-md-6 col-lg-6">
                         <input type="text" class="form-control" id="id_name"
                                placeholder="Name" name="name" value="{{ form.name.value }}"/>
                         <span class="help-block error">{{ form.name.errors }}</span>
@@ -20,7 +20,7 @@
                     <div class="form-group" form-group-lg>
                 {% endif %}
                     <label for="id_age"  class="col-sm-2  col-md-2 col-lg-2 control-label" form-group-lg>Age</label>
-                    <div class="col-sm-10  col-md-10 col-lg-10">
+                    <div class="col-sm-6  col-md-6 col-lg-6">
                         <input id="id_age" placeholder="Age" name="age" type="number" value="{{ form.age.value }}" />
                         <span class="help-block error">{{ form.age.errors }}</span>
 
@@ -33,7 +33,7 @@
                     <div class="form-group" form-group-lg>
                 {% endif %}
                                    <label for="id_public"  class="col-sm-2  col-md-2 col-lg-2 control-label" form-group-lg>Public</label>
-                    <div class="col-sm-10  col-md-10 col-lg-10">
+                    <div class="col-sm-6  col-md-6 col-lg-6">
                         <input id="id_public"  name="public" type="checkbox" checked="{{ form.public.value }}" />
                         <span class="help-block error">{{ form.public.errors }}</span>
                     </div>
@@ -45,7 +45,7 @@
                     <div class="form-group" form-group-lg>
                 {% endif %}
                                    <label for="id_category" class="col-sm-2  col-md-2 col-lg-2 control-label" form-group-lg>Category:</label>
-                    <div class="col-sm-10  col-md-10 col-lg-10">
+                    <div class="col-sm-6  col-md-6 col-lg-6">
                         <select id="id_category" name="category" class="form-control">
                             {%  for opt in categories %}
                                 <option value="{{ opt.id }}">{{ opt.name }}</option>
