@@ -1,6 +1,5 @@
 {%  extends "contacts/main.html" %}
 {% load staticfiles %}
-{% load form_enhancements_tags %}
 <title>Contact Create</title>
 
 
@@ -21,4 +20,6 @@
             </ul>
         </div>
     {% endif %}
+
+    {% include "contacts/contact_form.html" with form=form categories=categories %}
 {% endblock %}
