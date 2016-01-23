@@ -10,36 +10,42 @@
 
 
 {% block header_files %}
-<link href="{% static 'custom/css/common.css' %}"
+    <link href="{% static 'custom/css/common.css' %}"
           rel="stylesheet" media="screen">
 {% endblock %}
 
 {% block content %}
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-            {{ message }}
-        </li>
-    {% endfor %}
-</ul>
-{% endif %}
-<h2>My Contacts</h2>
-<table>
-<tr>
-<th>Name</th>
-<th>Age</th>
-<th colspan="3"></th>
-</tr>
-    {% for contact in contacts %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h2>My Contacts</h2>
+    <table class="table">
+        <thead>
         <tr>
-            <td>{{ contact.name  }}</td>
-            <td>{{ contact.age  }}</td>
-            <td><a href="/contacts/{{ contact.id }}/edit">edit</a></td>
-            <td><a href="/contacts/{{ contact.id }}/show">show</a></td>
-            <td><a href="/contacts/{{ contact.id }}/delete">delete</a></td>
+            <th>Name</th>
+            <th>Age</th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
-    {% endfor %}
-</table>
+        </thead>
+        <tbody>
+        {% for contact in contacts %}
+            <tr>
+                <td>{{ contact.name  }}</td>
+                <td>{{ contact.age  }}</td>
+                <td><a href="/contacts/{{ contact.id }}/edit">edit</a></td>
+                <td><a href="/contacts/{{ contact.id }}/show">show</a></td>
+                <td><a href="/contacts/{{ contact.id }}/delete">delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}
