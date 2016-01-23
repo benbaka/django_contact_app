@@ -19,6 +19,9 @@ def index(request):
 
 @login_required(login_url="/admin/login")
 def new(request):
+    user_profile = request.user.userprofile_set.filter()[0]
+    form_categories = Category.objects.filter(owner=user_profile)
+
     if request.method == "GET":
         current_user = request.user
         form = ContactForm(current_user=current_user)
@@ -42,10 +45,12 @@ def new(request):
                 return redirect('/contacts/')
             except:
                 messages.add_message(request, messages.ERROR, "Contact creation unsuccessful" )
-                return render(request, 'contacts/new_contact_form.html', {'form':form})
+                return render(request, 'contacts/new_contact_form.html', {'form':form,
+                                                                          'categories': form_categories})
         else:
             messages.add_message(request, messages.ERROR, "Contact creation unsuccessful" )
-            return render(request, 'contacts/new_contact_form.html', {'form':form})
+            return render(request, 'contacts/new_contact_form.html', {'form':form,
+                                                                      'categories': form_categories})
 
 @login_required(login_url="/admin/login")
 def edit(request, id):
