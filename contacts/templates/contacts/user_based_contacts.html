@@ -1,11 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>My Contacts</title>
-</head>
-<body>
+{%  extends "contacts/main.html" %}
+{% load staticfiles %}
 
+{% block title %}
+
+    All Personal Contacts
+
+{% endblock %}
+
+
+
+{% block header_files %}
+<link href="{% static 'custom/css/common.css' %}"
+          rel="stylesheet" media="screen">
+{% endblock %}
+
+{% block content %}
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
@@ -33,5 +42,4 @@
     {% endfor %}
 </table>
 
-</body>
-</html>
+{% endblock %}
