@@ -4,9 +4,9 @@
         <h1>{{ title }}</h1>
                 {% csrf_token %}
                 {% if form.name.errors %}
-                    <div class="form-group has-error" form-group-lg>
+                    <div class="form-group has-error form-group-lg">
                 {% else %}
-                    <div class="form-group" form-group-lg>
+                    <div class="form-group form-group-lg">
                 {% endif %}
                     <label for="id_name" class="col-sm-2  col-md-2 col-lg-2 control-label">Name</label>
                     <div class="col-sm-6  col-md-6 col-lg-6">
@@ -17,9 +17,9 @@
                 </div>
 
                 {% if form.age.errors %}
-                    <div class="form-group has-error" form-group-lg>
+                    <div class="form-group has-error form-group-lg">
                 {% else %}
-                    <div class="form-group" form-group-lg>
+                    <div class="form-group form-group-lg">
                 {% endif %}
                     <label for="id_age"  class="col-sm-2  col-md-2 col-lg-2 control-label" form-group-lg>Age</label>
                     <div class="col-sm-6  col-md-6 col-lg-6">
@@ -30,9 +30,9 @@
                 </div>
 
                 {% if form.public.errors %}
-                    <div class="form-group has-error" form-group-lg>
+                    <div class="form-group has-error form-group-lg">
                 {% else %}
-                    <div class="form-group" form-group-lg>
+                    <div class="form-group form-group-lg">
                 {% endif %}
                                    <label for="id_public"  class="col-sm-2  col-md-2 col-lg-2 control-label" form-group-lg>Public</label>
                     <div class="col-sm-1  col-md-1 col-lg-1 pull-left">
@@ -42,9 +42,9 @@
                 </div>
 
                 {% if form.category.errors %}
-                    <div class="form-group has-error" form-group-lg>
+                    <div class="form-group has-error form-group-lg">
                 {% else %}
-                    <div class="form-group" form-group-lg>
+                    <div class="form-group form-group-lg">
                 {% endif %}
                                    <label for="id_category" class="col-sm-2  col-md-2 col-lg-2 control-label" form-group-lg>Category:</label>
                     <div class="col-sm-6  col-md-6 col-lg-6">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
 
-                <div class="form-group" form-group-lg>
+                <div class="form-group">
                     <div class="col-sm-8 col-md-8 col-lg-8  pull-right">
                         <input class="bg-primary btn-lg" type="submit" value="Submit" />
                     </div>
