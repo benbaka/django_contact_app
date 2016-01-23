@@ -1,3 +1,5 @@
+{% load form_enhancements_tags %}
+
     <form class="form-horizontal" role="form" action="{{ url }}" method="post">
         <h1>{{ title }}</h1>
                 {% csrf_token %}
@@ -8,8 +10,8 @@
                 {% endif %}
                     <label for="id_name" class="col-sm-2  col-md-2 col-lg-2 control-label">Name</label>
                     <div class="col-sm-6  col-md-6 col-lg-6">
-                        <input type="text" class="form-control" id="id_name"
-                               placeholder="Name" name="name" value="{{ form.name.value }}"/>
+                        {{ form.name|addcss:'form-control'}}
+
                         <span class="help-block error">{{ form.name.errors }}</span>
                     </div>
                 </div>
@@ -21,7 +23,7 @@
                 {% endif %}
                     <label for="id_age"  class="col-sm-2  col-md-2 col-lg-2 control-label" form-group-lg>Age</label>
                     <div class="col-sm-6  col-md-6 col-lg-6">
-                        <input id="id_age" placeholder="Age" name="age" type="number" value="{{ form.age.value }}" />
+                         {{ form.age|addcss:'form-control'}}
                         <span class="help-block error">{{ form.age.errors }}</span>
 
                     </div>
@@ -33,8 +35,8 @@
                     <div class="form-group" form-group-lg>
                 {% endif %}
                                    <label for="id_public"  class="col-sm-2  col-md-2 col-lg-2 control-label" form-group-lg>Public</label>
-                    <div class="col-sm-6  col-md-6 col-lg-6">
-                        <input id="id_public"  name="public" type="checkbox" checked="{{ form.public.value }}" />
+                    <div class="col-sm-1  col-md-1 col-lg-1 pull-left">
+                        {{ form.public|addcss:'form-control'}}
                         <span class="help-block error">{{ form.public.errors }}</span>
                     </div>
                 </div>
