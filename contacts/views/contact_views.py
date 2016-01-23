@@ -27,7 +27,9 @@ def new(request):
         form = ContactForm(current_user=current_user)
         user_profile = request.user.userprofile_set.filter()[0]
         form_categories = Category.objects.filter(owner=user_profile)
-        return render(request, 'contacts/new_contact_form.html', {'form':form,'categories':form_categories})
+        return render(request, 'contacts/new_contact_form.html', {'form':form,
+                                                                  'title':"New Contact",
+                                                                  'categories':form_categories})
     else:
         form = ContactForm(data=request.POST, current_user=request.user)
 
@@ -46,10 +48,12 @@ def new(request):
             except:
                 messages.add_message(request, messages.ERROR, "Contact creation unsuccessful" )
                 return render(request, 'contacts/new_contact_form.html', {'form':form,
+                                                                          'title':"New Contact",
                                                                           'categories': form_categories})
         else:
             messages.add_message(request, messages.ERROR, "Contact creation unsuccessful" )
             return render(request, 'contacts/new_contact_form.html', {'form':form,
+                                                                      'title':"New Contact",
                                                                       'categories': form_categories})
 
 @login_required(login_url="/admin/login")
@@ -92,6 +96,7 @@ def edit(request, id):
             messages.add_message(request, messages.ERROR, "Contact editing unsuccessful" )
             return render(request, 'contacts/edit_contact_form.html', {'form':edit_contact_form,
                                                                        'contact':contact,
+                                                                       'title':"Edit Contact",
                                                                        'categories':categories})
 
 @login_required(login_url="/admin/login")
