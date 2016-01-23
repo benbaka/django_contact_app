@@ -27,7 +27,7 @@ def new(request):
         form = ContactForm(current_user=current_user)
         user_profile = request.user.userprofile_set.filter()[0]
         form_categories = Category.objects.filter(owner=user_profile)
-        return render(request, 'contacts/new_contact_form.html', {'form':form,'form_categories':form_categories})
+        return render(request, 'contacts/new_contact_form.html', {'form':form,'categories':form_categories})
     else:
         form = ContactForm(data=request.POST, current_user=request.user)
 
