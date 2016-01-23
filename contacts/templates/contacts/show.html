@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Show contact</title>
-</head>
-<body>
+{%  extends "contacts/main.html" %}
+{% load staticfiles %}
+
+{% block title %}
+
+    Viewing {{ contact.name }}
+
+{% endblock %}
+
+
+
+{% block header_files %}
+    <link href="{% static 'custom/css/common.css' %}"
+          rel="stylesheet" media="screen">
+{% endblock %}
+
+{% block content %}
+
 <table>
     <tr>
         <td><b>Name:</b></td>
@@ -17,5 +28,6 @@
 </table>
 
 <a href="/contacts/">Back</a> | <a href="/contacts/{{ contact.id }}/edit">Edit</a>
-</body>
-</html>
+
+
+{% endblock %}
