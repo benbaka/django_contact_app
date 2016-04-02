@@ -1,7 +1,7 @@
 1. Refactor the new creation page.                      [Done]
 2. Add classes to field.                                [Done]
 3. Add design finishing to the listing of all contacts  [Done]
-4. Modify show page                                     [    ]
+4. Modify show page                                     [Done]
 5. Design the categories                                [    ]
 6. Implement tags for contacts                          [    ]
 7. Implement Ajax lucene text search                    [    ]
