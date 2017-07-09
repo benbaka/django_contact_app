@@ -1,5 +1,6 @@
 from contacts.forms.categoryForm import CategoryForm
 from contacts.models.category import Category
+from contacts.models.user_profile import UserProfile
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
@@ -12,7 +13,7 @@ class CategoryCreateView(CreateView):
 
     def form_valid(self, form):
         category = form.save(commit=False)
-        category.owner_id = self.request.user.id
+        category.owner=self.request.user.userprofile_set.filter()[0]
         category.save()
         return super(CategoryCreateView, self).form_valid(form)
 

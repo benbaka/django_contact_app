@@ -11,6 +11,7 @@ class ContactForm(forms.Form):
     def _populate_category_field(self):
         self.fields['category'].choices = [(category.id, category.name) for category in  Category.objects.filter(owner=self.user_profile)]
 
+
     def __init__(self, current_user,  *args, **kwargs):
         super(forms.Form, self).__init__(*args, **kwargs)
         self.user_profile = current_user.userprofile_set.filter()[0]
