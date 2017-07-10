@@ -11,6 +11,9 @@ class Category(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(UserProfile, null=True)
 
+    def __unicode__(self):
+        return self.name
+
     def get_absolute_url(self):
         return reverse('category-detail', args=[str(self.id)])
 
