@@ -30,3 +30,5 @@ pip install virtualenv
 ``` python manage.py runserver ```
 
 
+Useful links:
+1. https://git-scm.com/docs/git-request-pull
