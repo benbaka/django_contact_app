@@ -23,7 +23,7 @@ pip install virtualenv
       
  ```
 # 4. install requirements
-  ``` pip install -r requirements.txt ```
+  ``` pip install -r requirements.pip ```
 # 5. Initialize database
 ``` python manage.py migrate ```
 # Run application
