@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Categories List</title>
-</head>
-<body>
+{%  extends "contacts/main.html" %}
+{% load staticfiles %}
 
-<table>
-    <thead>
-    <th>Name</th>
-    <th>Description</th>
-    <th colspan="3"></th>
-    </thead>
+{% block header_files %}
+<link href="{% static 'custom/css/common.css' %}"
+          rel="stylesheet" media="screen">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock %}
 
+{% block content %}
+
+      <p>
+         <a href="/categories/new" class = "btn btn-primary btn-lg" role = "button">Add A category !</a>
+      </p>
     {% for category in object_list %}
         <tr>
             <td>{{category.name}}</td>
@@ -23,5 +22,5 @@
 
     {% endfor %}
     </table>
-</body>
-</html>
+
+{% endblock %}

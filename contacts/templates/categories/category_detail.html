@@ -1,15 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Category Detail</title>
-</head>
-<body>
+{%  extends "contacts/main.html" %}
+{% load staticfiles %}
+
+{% block header_files %}
+<link href="{% static 'custom/css/common.css' %}"
+          rel="stylesheet" media="screen">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
 <h1>{{ object.headline }}</h1>
 <p>{{ object.content }}</p>
 <p>Name: {{ object.name }}</p>
 <p>Description: {{ object.description }}</p>
 <p>Date: {{ object.date_created }}</p>
-</body>
+<hr/>
 <a href="/categories">Back</a> | <a href="/categories/{{ object.id }}/update" >Edit</a>
-</html>
+{% endblock %}
